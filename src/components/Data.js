@@ -71,9 +71,6 @@ const products = [
   {
     id: 8,
     name: "Pierced Owl Rose Gold Plated Stainless Steel Double",
-    price: 10.99,
-    description:
-      "Rose Gold Plated Double Flared Tunnel Plug Earrings. Made of 316L Stainless Steel ",
     price: "550",
     image: "https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg",
     inStock: faker.random.arrayElement([0, 3, 5, 6, 7]),
