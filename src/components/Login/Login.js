@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
-export default function Login() {
+export default function Login({ handleLogin }) {
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -19,6 +19,7 @@ export default function Login() {
     }
     signInWithEmailAndPassword(auth, values.email, values.password)
       .then((res) => {
+        handleLogin();
         navigate("/");
       })
       .catch((error) => {
@@ -48,14 +49,14 @@ export default function Login() {
         <div className={styles.footer}>
           <b className={styles.error}>{errorMsg}</b>
           <button onClick={handleSubmission}>Login</button>
-          <spna>
+          <span>
             <p>
               Click to Sign Up {"->"} {"  "}
               <span>
                 <Link to="/signup">SignUp</Link>
               </span>
             </p>
-          </spna>
+          </span>
         </div>
       </div>
     </div>

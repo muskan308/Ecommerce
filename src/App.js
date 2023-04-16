@@ -1,21 +1,32 @@
+import { useState } from "react";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Header from "./components/Header";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./components/Home";
 import Cart from "./components/Cart";
+import Home from "./components/Home";
 import Login from "./components/Login/Login";
-import SignUp from "./components/SignUp/SignUp";
 import MainHome from "./components/MainHome";
+import SignUp from "./components/SignUp/SignUp";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MainHome />}>
-          <Route index element={<Home />} />
+        <Route path="/login" element={<Login handleLogin={handleLogin} />} />
+
+        <Route
+          path="/"
+          element={isLoggedIn ? <MainHome /> : <Navigate to="/login" />}
+        >
+          <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
         </Route>
-        <Route path="/login" element={<Login />} />
+
         <Route path="/signup" element={<SignUp />} />
       </Routes>
     </BrowserRouter>

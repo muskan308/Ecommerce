@@ -10,19 +10,21 @@ const SingleProduct = ({ prod }) => {
 
   return (
     <div className="products">
-      <Card>
-        <div style={{ display: "flex", justifyContent: "center" }}>
+      <Card style={{ width: "100%", height: "100%" }}>
+        <div
+          style={{ display: "flex", justifyContent: "center", padding: "5%" }}
+        >
           <Card.Img
             variant="top"
             src={prod.image}
             alt={prod.name}
             style={{
-              height: "300px",
+              height: "250px",
               width: "200px",
             }}
           />
         </div>
-        <Card.Body>
+        <Card.Body style={{ background: "#343a40", color: "#ffff" }}>
           <Card.Title>{prod.name}</Card.Title>
           <Card.Subtitle style={{ paddingBottom: 10 }}>
             <span>₹ {prod.price.split(".")[0]}</span>
