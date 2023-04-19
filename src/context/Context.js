@@ -1,6 +1,11 @@
 import { createContext, useContext, useReducer } from "react";
 
-import { cartReducer, productReducer, emailReducer } from "./Reducers";
+import {
+  cartReducer,
+  productReducer,
+  emailReducer,
+  logInReducer,
+} from "./Reducers";
 
 const Cart = createContext();
 
@@ -18,7 +23,8 @@ const Context = ({ children }) => {
   });
 
   const [email, dispatchEmail] = useReducer(emailReducer, "");
-  console.log("Email", email);
+
+  const [isLoggedIn, dispatchisLoggedIn] = useReducer(logInReducer, false);
 
   return (
     <Cart.Provider
@@ -29,6 +35,8 @@ const Context = ({ children }) => {
         productDispatch,
         email,
         dispatchEmail,
+        isLoggedIn,
+        dispatchisLoggedIn,
       }}
     >
       {children}

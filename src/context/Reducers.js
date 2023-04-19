@@ -44,3 +44,8 @@ export const emailReducer = (state, action) => {
   console.log("Email", action.payload);
   return action.payload;
 };
+
+export const logInReducer = (state, action) => {
+  console.log("login", action.payload);
+  return action.payload;
+};

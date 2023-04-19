@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Cart from "./components/Cart";
@@ -12,13 +12,7 @@ import faker from "faker";
 faker.seed(99);
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-  };
-
-  const { dispatch } = CartState();
+  const { dispatch, isLoggedIn } = CartState();
 
   useEffect(() => {
     let isMounted = true;
@@ -57,7 +51,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login handleLogin={handleLogin} />} />
+        <Route path="/login" element={<Login />} />
 
         <Route
           path="/"
