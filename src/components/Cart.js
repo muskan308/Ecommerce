@@ -9,6 +9,7 @@ const Cart = () => {
   const {
     state: { cart },
     dispatch,
+    dispatchisLoggedIn,
   } = CartState();
   const [total, setTotal] = useState();
 
@@ -80,7 +81,13 @@ const Cart = () => {
         </span>
         {cart.length > 0 ? (
           <Link to="/login">
-            <Button type="button" disabled={cart.length === 0}>
+            <Button
+              type="button"
+              disabled={cart.length === 0}
+              onClick={() => {
+                dispatchisLoggedIn({ payload: false });
+              }}
+            >
               Proceed to Checkout
             </Button>
           </Link>

@@ -7,7 +7,7 @@ import { updateProfile, createUserWithEmailAndPassword } from "firebase/auth";
 import { CartState } from "../../context/Context";
 
 export default function SignUp() {
-  const { dispatchEmail } = CartState();
+  const { dispatchEmail, dispatchisLoggedIn } = CartState();
 
   const [errorMsg, setErrorMsg] = useState("");
   const [values, setValues] = useState({
@@ -30,6 +30,7 @@ export default function SignUp() {
           displayName: values.name,
         });
         dispatchEmail({ payload: values.email });
+        dispatchisLoggedIn({ payload: true });
         navigate("/");
       })
       .catch((error) => {

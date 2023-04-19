@@ -19,6 +19,7 @@ const Header = () => {
     dispatch,
     productDispatch,
     email,
+    dispatchisLoggedIn,
   } = CartState();
 
   return (
@@ -95,7 +96,12 @@ const Header = () => {
               <Dropdown.Menu style={{ minWidth: 370 }}>
                 {
                   <Link to="/login">
-                    <Button style={{ width: "95%", margin: "0 10px" }}>
+                    <Button
+                      onClick={() => {
+                        dispatchisLoggedIn({ payload: false });
+                      }}
+                      style={{ width: "95%", margin: "0 10px" }}
+                    >
                       Sign Out
                     </Button>
                   </Link>

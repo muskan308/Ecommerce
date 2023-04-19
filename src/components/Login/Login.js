@@ -7,7 +7,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { CartState } from "../../context/Context";
 
 export default function Login({ handleLogin }) {
-  const { dispatchEmail } = CartState();
+  const { dispatchEmail, dispatchisLoggedIn } = CartState();
 
   const [values, setValues] = useState({
     email: "",
@@ -23,7 +23,7 @@ export default function Login({ handleLogin }) {
     signInWithEmailAndPassword(auth, values.email, values.password)
       .then((res) => {
         dispatchEmail({ payload: values.email });
-        handleLogin();
+        dispatchisLoggedIn({ payload: true });
         navigate("/");
       })
       .catch((error) => {
