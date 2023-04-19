@@ -20,31 +20,30 @@ function App() {
 
   const { dispatch } = CartState();
 
-  const getAPI = async (URL) => {
-    try {
-      const { data } = await axios.get(URL);
-      console.log(data);
-      // APIDispatch({ payload: data });
-      const products = data.map((val) => {
-        return {
-          id: val.id,
-          name: val.title,
-          price: val.price,
-          image: val.image,
-          inStock: faker.random.arrayElement([0, 3, 5, 6, 7]),
-          fastDelivery: faker.datatype.boolean(),
-          ratings: faker.random.arrayElement([1, 2, 3, 4, 5]),
-        };
-      });
-      console.log(products);
-      dispatch({ type: "ADD_PRODUCTS", products: products });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
     let isMounted = true;
+    const getAPI = async (URL) => {
+      try {
+        const { data } = await axios.get(URL);
+        console.log(data);
+        // APIDispatch({ payload: data });
+        const products = data.map((val) => {
+          return {
+            id: val.id,
+            name: val.title,
+            price: val.price,
+            image: val.image,
+            inStock: faker.random.arrayElement([0, 3, 5, 6, 7]),
+            fastDelivery: faker.datatype.boolean(),
+            ratings: faker.random.arrayElement([1, 2, 3, 4, 5]),
+          };
+        });
+        console.log(products);
+        dispatch({ type: "ADD_PRODUCTS", products: products });
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
     if (isMounted) {
       getAPI("https://fakestoreapi.com/products/");
@@ -53,7 +52,7 @@ function App() {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <BrowserRouter>
