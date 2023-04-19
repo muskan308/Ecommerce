@@ -27,7 +27,7 @@ const SingleProduct = ({ prod }) => {
         <Card.Body style={{ background: "#343a40", color: "#ffff" }}>
           <Card.Title>{prod.name}</Card.Title>
           <Card.Subtitle style={{ paddingBottom: 10 }}>
-            <span>₹ {prod.price.split(".")[0]}</span>
+            <span>₹ {Math.trunc(prod.price)}</span>
             {prod.fastDelivery ? (
               <div>Fast Delivery</div>
             ) : (

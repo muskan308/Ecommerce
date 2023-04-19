@@ -20,7 +20,7 @@ const Cart = () => {
 
   return (
     <div className="home">
-      <div className="productContainer">
+      <div className="cart-productContainer">
         <ListGroup>
           {cart.map((prod) => (
             <ListGroup.Item key={prod.id}>
@@ -31,7 +31,7 @@ const Cart = () => {
                 <Col md={2}>
                   <span>{prod.name}</span>
                 </Col>
-                <Col md={2}>₹ {prod.price}</Col>
+                <Col md={2}>₹ {Math.trunc(prod.price)}</Col>
                 <Col md={2}>
                   <Rating rating={prod.ratings} />
                 </Col>
@@ -73,9 +73,11 @@ const Cart = () => {
           ))}
         </ListGroup>
       </div>
-      <div className="filters summary">
+      <div className="summary">
         <span className="title">Subtotal ({cart.length}) items</span>
-        <span style={{ fontWeight: 700, fontSize: 20 }}>Total: ₹ {total}</span>
+        <span style={{ fontWeight: 700, fontSize: 20 }}>
+          Total: ₹ {Math.trunc(total)}
+        </span>
         {cart.length > 0 ? (
           <Link to="/login">
             <Button type="button" disabled={cart.length === 0}>

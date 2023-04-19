@@ -6,7 +6,9 @@ import "./styles.css";
 const MainHome = () => {
   return (
     <div className="main-home">
-      <Header />
+      <div className="nav">
+        <Header />
+      </div>
       <Outlet />
     </div>
   );
