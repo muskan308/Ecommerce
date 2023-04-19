@@ -44,9 +44,13 @@ const Home = () => {
     <div className="home">
       <Filters />
       <div className="productContainer">
-        {transformProducts().map((prod) => (
-          <SingleProduct prod={prod} key={prod.id} />
-        ))}
+        {products.length > 0 ? (
+          transformProducts().map((prod) => (
+            <SingleProduct prod={prod} key={prod.id} />
+          ))
+        ) : (
+          <p>Loading products...</p>
+        )}
       </div>
     </div>
   );

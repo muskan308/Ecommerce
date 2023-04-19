@@ -4,8 +4,11 @@ import InputForm from "../InputForm/InputForm";
 import { useNavigate, Link } from "react-router-dom";
 import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { CartState } from "../../context/Context";
 
 export default function Login({ handleLogin }) {
+  const { dispatchEmail } = CartState();
+
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -19,6 +22,7 @@ export default function Login({ handleLogin }) {
     }
     signInWithEmailAndPassword(auth, values.email, values.password)
       .then((res) => {
+        dispatchEmail({ payload: values.email });
         handleLogin();
         navigate("/");
       })

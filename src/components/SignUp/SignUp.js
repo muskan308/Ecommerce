@@ -4,8 +4,11 @@ import styles from "./SignUp.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../firebase";
 import { updateProfile, createUserWithEmailAndPassword } from "firebase/auth";
+import { CartState } from "../../context/Context";
 
 export default function SignUp() {
+  const { dispatchEmail } = CartState();
+
   const [errorMsg, setErrorMsg] = useState("");
   const [values, setValues] = useState({
     name: "",
@@ -26,7 +29,8 @@ export default function SignUp() {
         updateProfile(user, {
           displayName: values.name,
         });
-        navigate("/login");
+        dispatchEmail({ payload: values.email });
+        navigate("/");
       })
       .catch((error) => {
         setErrorMsg(error.message);
